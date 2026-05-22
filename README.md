@@ -1,6 +1,6 @@
 # In-Car Voice Assistant
 
-End-to-end conversational AI system that transcribes speech, identifies user intent, and answers context-aware queries — modeled after Cerence AI's in-car voice assistant platform.
+End-to-end conversational AI system that transcribes speech, identifies user intent, and answers context-aware queries ï¿½ modeled after Cerence AI's in-car voice assistant platform.
 
 ## Problem Statement
 
@@ -18,24 +18,34 @@ Build a voice assistant that:
 - **Storage:** PostgreSQL
 - **Packaging:** Docker
 
+## System Architecture
+
+Day 2 architecture diagram:
+
+[View the Mermaid Architecture Diagram](docs/architecture-day2.md)
+
+The system flow is:
+
+User â†’ Streamlit UI â†’ FastAPI â†’ Audio Input â†’ Preprocessing â†’ Whisper ASR â†’ DeBERTa-V3 Intent Classifier â†’ LangChain + FAISS RAG â†’ Final Response
+
 ## Project Timeline
 
 50-day independent build, documented daily on LinkedIn and GitHub.
 
 ## Status
 
-**Day 1 of 50** — Project charter complete. Environment set up.
+**Day 1 of 50** ï¿½ Project charter complete. Environment set up.
 
 ## Roadmap
 
 - [x] Day 1: Repo + environment
-- [ ] Days 2–3: Architecture diagram + dependencies
-- [ ] Days 4–12: Data engineering pipeline
-- [ ] Days 13–18: Feature engineering
-- [ ] Days 19–30: Model development
-- [ ] Days 31–42: RAG + deployment
-- [ ] Days 43–50: Monitoring + polish
+- [ ] Days 2ï¿½3: Architecture diagram + dependencies
+- [ ] Days 4ï¿½12: Data engineering pipeline
+- [ ] Days 13ï¿½18: Feature engineering
+- [ ] Days 19ï¿½30: Model development
+- [ ] Days 31ï¿½42: RAG + deployment
+- [ ] Days 43ï¿½50: Monitoring + polish
 
 ## Author
 
-Mounika Katipally — building in public.
+Mounika Katipally ï¿½ building in public.
