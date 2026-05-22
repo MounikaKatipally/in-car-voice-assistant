@@ -2,6 +2,8 @@
 
 This diagram shows the planned end-to-end flow of the in-car voice assistant system.
 
+This architecture will guide the implementation of the project across data processing, model inference, retrieval, storage, and monitoring.
+
 ```mermaid
 flowchart LR
     U[User] --> UI[Streamlit UI]
