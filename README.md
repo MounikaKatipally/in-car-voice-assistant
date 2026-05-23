@@ -27,6 +27,23 @@ Day 2 architecture diagram:
 The system flow is:
 
 User → Streamlit UI → FastAPI → Audio Input → Preprocessing → Whisper ASR → DeBERTa-V3 Intent Classifier → LangChain + FAISS RAG → Final Response
+## Environment and Dependencies
+
+Day 3 setup includes the initial Python dependencies and Docker container skeleton.
+
+Core dependencies:
+- transformers
+- torch
+- librosa
+- spaCy
+- pandas
+- LangChain
+- FAISS
+- Streamlit
+- FastAPI
+- pytest
+
+Docker is used to make the project reproducible across different machines.
 
 ## Project Timeline
 

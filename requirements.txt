@@ -1,0 +1,11 @@
+transformers
+torch
+librosa
+spacy
+pandas
+langchain
+faiss-cpu
+streamlit
+fastapi
+uvicorn
+pytest
