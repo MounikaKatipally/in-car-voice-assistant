@@ -103,13 +103,15 @@ python scripts\prepare_librispeech_sample.py
 
 ## Roadmap
 
-- [x] Day 1: Repo + environment
-- [ ] Days 2�3: Architecture diagram + dependencies
-- [ ] Days 4�12: Data engineering pipeline
-- [ ] Days 13�18: Feature engineering
-- [ ] Days 19�30: Model development
-- [ ] Days 31�42: RAG + deployment
-- [ ] Days 43�50: Monitoring + polish
+- [x] Day 1: Repo + environment setup
+- [x] Day 2: Architecture diagram + README architecture link
+- [x] Day 3: Dependencies + Docker skeleton
+- [x] Day 4: Public dataset preparation with LibriSpeech
+- [ ] Days 5–12: Data engineering pipeline
+- [ ] Days 13–18: Feature engineering
+- [ ] Days 19–30: Model development
+- [ ] Days 31–42: RAG + deployment
+- [ ] Days 43–50: Monitoring + polish
 
 ## Author
 
