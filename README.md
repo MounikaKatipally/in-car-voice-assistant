@@ -99,7 +99,7 @@ python scripts\prepare_librispeech_sample.py
 
 ## Status
 
-**Day 1 of 50** � Project charter complete. Environment set up.
+**Day 4 of 50** — Dataset foundation complete.
 
 ## Roadmap
 
