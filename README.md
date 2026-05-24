@@ -45,6 +45,54 @@ Core dependencies:
 
 Docker is used to make the project reproducible across different machines.
 
+## Dataset
+
+For Day 4, this project uses a small LibriSpeech sample for early Automatic Speech Recognition (ASR) development and testing.
+
+### Dataset Details
+
+- **Source:** LibriSpeech dev-clean validation split
+- **Initial subset:** 1,000 audio clips
+- **Audio format:** WAV
+- **Sample rate:** 16 kHz
+- **Metadata file:** `data/metadata/librispeech_sample_1000.csv`
+
+### Metadata Fields
+
+The metadata CSV contains:
+
+- `audio_id`
+- `audio_path`
+- `transcript`
+- `sample_rate`
+- `source`
+- `split`
+
+### Data Storage Decision
+
+The raw audio files are stored locally in:
+
+```text
+data/raw/librispeech_sample/
+```
+
+They are excluded from GitHub using `.gitignore` to keep the repository lightweight.
+
+Only the dataset preparation script and metadata file are committed to GitHub:
+
+```text
+scripts/prepare_librispeech_sample.py
+data/metadata/librispeech_sample_1000.csv
+```
+
+### Regenerate the Dataset Sample
+
+To regenerate the 1,000-clip LibriSpeech sample, run:
+
+```powershell
+python scripts\prepare_librispeech_sample.py
+```
+
 ## Project Timeline
 
 50-day independent build, documented daily on LinkedIn and GitHub.
