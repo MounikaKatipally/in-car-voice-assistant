@@ -115,4 +115,5 @@ python scripts\prepare_librispeech_sample.py
 
 ## Author
 
-Mounika Katipally � building in public.
+**Mounika Katipally**  
+Building an end-to-end AI/ML project in public to document the process, technical decisions, implementation steps, and lessons learned.
