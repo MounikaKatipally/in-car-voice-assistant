@@ -9,3 +9,6 @@ streamlit
 fastapi
 uvicorn
 pytest
+datasets
+soundfile
+
