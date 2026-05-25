@@ -92,14 +92,69 @@ To regenerate the 1,000-clip LibriSpeech sample, run:
 ```powershell
 python scripts\prepare_librispeech_sample.py
 ```
+## Database Schema
 
+For Day 5, PostgreSQL is added as the local database layer for the project.
+
+The database is started locally using Docker Compose.
+
+### Database Details
+
+- **Database name:** `voice_assistant_db`
+- **Database user:** `voice_user`
+- **PostgreSQL container:** `in_car_voice_postgres`
+- **SQL schema file:** `sql/schema.sql`
+- **Docker Compose file:** `docker-compose.yml`
+
+### Core Tables
+
+- `audio_files`: stores audio file paths, source, split, sample rate, and duration
+- `transcripts`: stores ground-truth or model-generated transcripts
+- `intents`: stores predicted intent labels, confidence scores, and model name
+- `metadata`: stores flexible key-value metadata for each audio file
+
+### Run PostgreSQL Locally
+
+To start PostgreSQL locally:
+
+```powershell
+docker compose up -d
+```
+
+To check that the container is running:
+
+```powershell
+docker ps
+```
+
+To connect to the database:
+
+```powershell
+docker exec -it in_car_voice_postgres psql -U voice_user -d voice_assistant_db
+```
+
+Inside the PostgreSQL prompt, list the tables:
+
+```sql
+\dt
+```
+
+To exit PostgreSQL:
+
+```sql
+\q
+```
 ## Project Timeline
 
 50-day independent build, documented daily on LinkedIn and GitHub.
 
 ## Status
 
-**Day 4 of 50** — Dataset foundation complete.
+## Status
+
+**Day 5 of 50** — PostgreSQL database schema added.
+
+## Roadmap
 
 ## Roadmap
 
@@ -107,7 +162,8 @@ python scripts\prepare_librispeech_sample.py
 - [x] Day 2: Architecture diagram + README architecture link
 - [x] Day 3: Dependencies + Docker skeleton
 - [x] Day 4: Public dataset preparation with LibriSpeech
-- [ ] Days 5–12: Data engineering pipeline
+- [x] Day 5: PostgreSQL database schema with Docker Compose
+- [ ] Days 6–12: Data engineering pipeline
 - [ ] Days 13–18: Feature engineering
 - [ ] Days 19–30: Model development
 - [ ] Days 31–42: RAG + deployment

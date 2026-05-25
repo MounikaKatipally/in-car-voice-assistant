@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: in_car_voice_postgres
+    environment:
+      POSTGRES_DB: voice_assistant_db
+      POSTGRES_USER: voice_user
+      POSTGRES_PASSWORD: voice_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  postgres_data:
