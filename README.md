@@ -144,6 +144,70 @@ To exit PostgreSQL:
 ```sql
 \q
 ```
+## Data Ingestion Pipeline
+
+For Days 6-7, the project adds a Python ingestion pipeline that loads the prepared LibriSpeech metadata into PostgreSQL.
+
+The ingestion script connects the local audio dataset with the database layer so the system can track audio files, transcripts, sample rates, durations, and ingestion status in a structured way.
+
+### Ingestion Script
+
+```text
+scripts/ingest_librispeech_to_postgres.py
+```
+
+### What the Pipeline Does
+
+- Reads `data/metadata/librispeech_sample_1000.csv`
+- Verifies that each local audio file exists
+- Extracts audio duration and sample rate using `soundfile`
+- Inserts audio records into the `audio_files` table
+- Inserts ground-truth transcripts into the `transcripts` table
+- Adds logging and error handling for traceability
+- Writes ingestion logs locally under `logs/`
+
+### Ingestion Results
+
+The pipeline successfully ingested:
+
+- **1,000 records** into `audio_files`
+- **1,000 records** into `transcripts`
+- **0 failed records**
+
+### Run the Ingestion Pipeline
+
+Make sure PostgreSQL is running:
+
+```powershell
+docker compose up -d
+```
+
+Run the ingestion script:
+
+```powershell
+python scripts\ingest_librispeech_to_postgres.py
+```
+
+### Verify Records in PostgreSQL
+
+Connect to the database:
+
+```powershell
+docker exec -it in_car_voice_postgres psql -U voice_user -d voice_assistant_db
+```
+
+Check record counts:
+
+```sql
+SELECT COUNT(*) FROM audio_files;
+SELECT COUNT(*) FROM transcripts;
+```
+
+Expected result:
+
+```text
+1000
+```
 ## Project Timeline
 
 50-day independent build, documented daily on LinkedIn and GitHub.
@@ -152,7 +216,17 @@ To exit PostgreSQL:
 
 ## Status
 
-**Day 5 of 50** — PostgreSQL database schema added.
+**Day 1-7 of 50** — LibriSpeech ingestion pipeline completed.
+
+Completed so far:
+
+- **Day 1:** Project charter, GitHub repository, virtual environment, starter folders, and smoke test completed
+- **Day 2:** System architecture diagram created using Mermaid and linked in README
+- **Day 3:** Environment dependencies, `requirements.txt`, Dockerfile skeleton, `.dockerignore`, and dependency check script completed
+- **Day 4:** LibriSpeech dataset preparation completed with 1,000 audio clips generated locally and metadata committed to GitHub
+- **Day 5:** PostgreSQL database schema added using Docker Compose
+- **Days 6-7:** LibriSpeech ingestion pipeline completed with 1,000 audio records and 1,000 transcripts inserted into PostgreSQL
+## Roadmap
 
 ## Roadmap
 
@@ -163,11 +237,12 @@ To exit PostgreSQL:
 - [x] Day 3: Dependencies + Docker skeleton
 - [x] Day 4: Public dataset preparation with LibriSpeech
 - [x] Day 5: PostgreSQL database schema with Docker Compose
-- [ ] Days 6–12: Data engineering pipeline
-- [ ] Days 13–18: Feature engineering
-- [ ] Days 19–30: Model development
-- [ ] Days 31–42: RAG + deployment
-- [ ] Days 43–50: Monitoring + polish
+- [x] Days 6-7: Data ingestion pipeline into PostgreSQL
+- [ ] Days 8-12: Data validation and preprocessing pipeline
+- [ ] Days 13-18: Feature engineering
+- [ ] Days 19-30: Model development
+- [ ] Days 31-42: RAG + deployment
+- [ ] Days 43-50: Monitoring + polish
 
 ## Author
 
