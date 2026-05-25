@@ -12,3 +12,4 @@ pytest
 datasets
 soundfile
 
+psycopg2-binary

@@ -9,3 +9,4 @@ models/
 *.npy
 *.parquet
 .vscode/
+logs/
