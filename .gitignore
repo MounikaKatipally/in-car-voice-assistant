@@ -10,3 +10,4 @@ models/
 *.parquet
 .vscode/
 logs/
+data/processed/

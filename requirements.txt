@@ -13,3 +13,5 @@ datasets
 soundfile
 
 psycopg2-binary
+noisereduce
+scipy
