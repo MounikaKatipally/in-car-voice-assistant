@@ -373,6 +373,220 @@ The governance layer includes:
 ```text
 DATA_GOVERNANCE.md
 ```
+## Phase 2: Feature Engineering
+
+Phase 2 focuses on converting processed audio, cleaned transcripts, and metadata into machine learning-ready features.
+
+This phase prepares the project for future model development, evaluation, validation, and visualization.
+
+## Audio Feature Extraction
+
+For Day 13, the project adds an audio feature extraction pipeline using `librosa`.
+
+The script extracts machine learning-ready audio representations from the processed LibriSpeech audio files.
+
+### Extracted Audio Features
+
+- MFCCs
+- Mel spectrograms
+- Pitch estimates
+- Tempo estimates
+
+### Script
+
+```text
+scripts/extract_audio_features.py
+```
+
+### Feature Output Location
+
+```text
+data/features/audio_npy/
+```
+
+### Feature Manifest
+
+```text
+data/features/audio_feature_manifest_1000.csv
+```
+
+The `.npy` feature files are stored locally and excluded from GitHub using `.gitignore`.
+
+Only the feature extraction script and manifest CSV are committed.
+
+### Day 13 Result
+
+- 1,000 processed audio clips analyzed
+- 4,000 `.npy` feature files generated locally
+- 1 feature manifest CSV created
+- 0 failed files
+
+### Run Audio Feature Extraction
+
+```powershell
+python scripts\extract_audio_features.py
+```
+
+## Text Feature Extraction
+
+For Day 14, the project adds transcript-level text feature extraction using `spaCy`.
+
+The script processes cleaned transcripts and generates NLP features for downstream modeling and analysis.
+
+### Extracted Text Features
+
+- Tokens
+- Lemmas
+- POS tags
+- Word count
+- Character count
+- Average word length
+- Noun count
+- Verb count
+- Adjective count
+- Adverb count
+
+### Script
+
+```text
+scripts/extract_text_features.py
+```
+
+### Output
+
+```text
+data/features/text_features_1000.jsonl
+```
+
+### Run Text Feature Extraction
+
+```powershell
+python scripts\extract_text_features.py
+```
+
+## Metadata Feature Engineering
+
+For Day 15, the project derives structured metadata features from the pseudonymized metadata file.
+
+### Derived Metadata Features
+
+- Clip duration
+- Duration bucket
+- Synthetic time of day
+- Speaker gender availability field
+- Sample rate
+- Word count
+- Word rate
+- Transcript availability flag
+- Speaker hash
+
+### Script
+
+```text
+scripts/build_metadata_features.py
+```
+
+### Output
+
+```text
+data/features/metadata_features_1000.csv
+```
+
+### Run Metadata Feature Engineering
+
+```powershell
+python scripts\build_metadata_features.py
+```
+
+## Multimodal Feature Store
+
+For Day 16, the project combines audio feature summaries, text features, and metadata features into one multimodal feature store.
+
+The feature store is indexed by `record_id` and saved as a Parquet file.
+
+### Feature Store Includes
+
+- Audio feature paths
+- Audio feature summary statistics
+- Text feature counts
+- Metadata features
+- Duration and sample rate fields
+- Speaker hash
+- Transcript availability
+
+### Script
+
+```text
+scripts/build_feature_store.py
+```
+
+### Output
+
+```text
+data/features/multimodal_feature_store_1000.parquet
+```
+
+### Run Feature Store Build
+
+```powershell
+python scripts\build_feature_store.py
+```
+
+## Feature Validation
+
+For Day 17, the project adds automated feature validation using `pytest`.
+
+The tests verify that the feature store is consistent, complete, and ready for model development.
+
+### Validation Checks
+
+- Feature store shape
+- Missing value checks
+- Sample rate validation
+- Duration range validation
+- Word count validation
+- Duration bucket validation
+- Duplicate audio ID checks
+
+### Test File
+
+```text
+tests/test_feature_store.py
+```
+
+### Run Tests
+
+```powershell
+pytest tests\test_feature_store.py
+```
+
+## Feature Dashboard
+
+For Day 18, the project adds a Streamlit dashboard for visualizing feature distributions and inspecting the multimodal feature store.
+
+### Dashboard Includes
+
+- Feature store overview
+- Record and feature counts
+- Dataset preview
+- Duration distribution
+- Word count trends
+- MFCC mean distribution
+- Pitch mean distribution
+- Feature correlation preview
+- Duration bucket filtering
+
+### Dashboard File
+
+```text
+app/feature_dashboard.py
+```
+
+### Run Dashboard
+
+```powershell
+streamlit run app\feature_dashboard.py
+```
 
 ### Pseudonymization Script
 
@@ -396,11 +610,7 @@ Pseudonymization is not the same as full anonymization. It reduces direct identi
 
 ## Status
 
-## Status
-
-## Status
-
-**Day 12 of 50** — Data governance and pseudonymization layer added.
+**Day 18 of 50** — Feature engineering phase completed.
 
 Completed so far:
 
@@ -415,6 +625,12 @@ Completed so far:
 - **Day 10:** Intent annotation seed dataset completed with 200 labeled in-car command examples across 10 intent classes
 - **Day 11:** ETL orchestration pipeline completed with idempotent, re-runnable pipeline execution
 - **Day 12:** Data governance layer added with pseudonymized speaker identifiers and documented data handling practices
+- **Day 13:** Audio feature extraction completed with MFCCs, mel spectrograms, pitch, and tempo
+- **Day 14:** Text feature extraction completed with tokenization, lemmatization, and POS tagging
+- **Day 15:** Metadata feature engineering completed with duration buckets, synthetic time of day, word rate, and speaker metadata fields
+- **Day 16:** Multimodal feature store created as a Parquet file indexed by `record_id`
+- **Day 17:** Feature validation added using pytest checks
+- **Day 18:** Streamlit feature dashboard added for visualizing feature distributions
 
 ## Roadmap
 
@@ -429,7 +645,12 @@ Completed so far:
 - [x] Day 10: Intent annotation seed dataset
 - [x] Day 11: ETL orchestration pipeline
 - [x] Day 12: Data governance and pseudonymization layer
-- [ ] Days 13-18: Feature engineering
+- [x] Day 13: Audio feature extraction
+- [x] Day 14: Text feature extraction
+- [x] Day 15: Metadata feature engineering
+- [x] Day 16: Multimodal feature store
+- [x] Day 17: Feature validation with pytest
+- [x] Day 18: Streamlit feature dashboard
 - [ ] Days 19-30: Model development
 - [ ] Days 31-42: RAG + deployment
 - [ ] Days 43-50: Monitoring + polish
